@@ -6,6 +6,11 @@ var unirest = require("unirest");
 router.get('/', function(req, res, next) {
   res.render('explore', { username: req.session.user });
 });
+//Handle search query & render same page, but with results. Nunjucks is amazing :)
+router.post('/', function(req, res, next) {
+  //run api search query with supplied user parameters.
+  res.render('explore', { username: req.session.user });
+});
 /*
 
 var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer");
