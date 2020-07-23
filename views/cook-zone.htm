@@ -2,7 +2,57 @@
 {% set active_page ="cook-zone" %}
 
 {% block content %}
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
-  {% set active_page = "cook-zone" %}
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-headline">
+        <div class="panel-heading">
+          <h3 class="panel-title">Welcome to the Cooking Zone</h3>
+          <p class="panel-subtitle">Cooking Zone</p>
+          <div class="right">
+            <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+          </div>
+        </div>
+        <div class="panel-body">
+
+          <h1>Featured Recipes Cards Carousel</h1>
+
+
+          {% for i in range (0,5) %}
+          <div class="card col-md-3">
+            <img src="{{ recipes[i].image }}" alt="Recipe Image" style="width:100%">
+            <div class="container">
+              <h4><b>{{ recipes[i].title}}</b></h4>
+              <p></p>
+            </div>
+          </div>
+          {% endfor %}
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .card {
+      /* Add shadows to create the "card" effect */
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      width: 20%;
+    }
+
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    /* Add some padding inside the card container */
+    .container {
+      padding: 2px 16px;
+    }
+    img {
+      border-radius: 5px 5px 0 0;
+    }
+  </style>
 {% endblock %}
