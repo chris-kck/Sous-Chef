@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer");
 
 req.query({
-  "q": "How much vitamin c is in 2 oranges%3F"
+  "q": "How much vitamin k is in spinach%3F"
 });
 
 req.headers({
