@@ -7,8 +7,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  req.session.username = req.body.username;
-  res.render('cook-zone', { username: req.session.username });
+  req.session.user = req.body.username;
+  res.render('cook-zone', { username: req.session.user });
 });
 
 module.exports = router;
