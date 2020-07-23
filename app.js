@@ -32,7 +32,7 @@ nunjucks.configure('views', {
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({name:"sid", sameSite:true, resave: true, saveUninitialized: true, secret: 'ABRACADABRA2!ABRACADABRA', cookie: { maxAge: 3600000 }}));
+app.use(session({name:"sid", sameSite:"Strict", resave: true, saveUninitialized: true, secret: 'ABRACADABRA2!ABRACADABRA', cookie: { maxAge: 3600000 }}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Use the route paths below
