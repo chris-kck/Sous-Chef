@@ -65,17 +65,20 @@
   </nav>
   <!-- END NAVBAR -->
   <!-- LEFT SIDEBAR -->
+
   <div id="sidebar-nav" class="sidebar">
     <div class="sidebar-scroll">
       <nav>
         <ul class="nav">
-          <li><a href="/cook-zone" class="active"><i class="fa fa-utensils"></i> <span>Cook-Zone</span></a></li>
-          <li><a href="/explore" class=""><i class="fa fa-binoculars"></i> <span>Explore</span></a></li>
-          <li><a href="cook-later" class=""><i class="fa fa-clock"></i> <span>Cook Later</span></a></li>
-          <li><a href="favourites" class=""><i class="fa fa-star-of-david"></i> <span>Favourites</span></a></li>
-          <li><a href="meal-plan" class=""><i class="fa fa-calendar-alt"></i> <span>Meal-Plan</span></a></li>
-          <li><a href="sommelier" class=""><i class="fa fa-wine-glass"></i> <span>Sommelier</span></a></li>
-          <li><a href="profile" class=""><i class="fa fa-user"></i> <span>Profile</span></a></li>
+          {% set active_page = active_page|default('cook-zone') -%}
+          <li><a href="/cook-zone" {% set id ="cook-zone" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-utensils"></i> <span>Cook-Zone</span></a></li>
+          <li><a href="/explore" {% set id ="explore" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-binoculars"></i> <span>Explore</span></a></li>
+          <li><a href="/cook-later" {% set id ="cook-later" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-clock"></i> <span>Cook Later</span></a></li>
+          <li><a href="/favourites" {% set id ="favourites" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-star-of-david"></i> <span>Favourites</span></a></li>
+          <li><a href="/meal-plan" {% set id ="meal-plan" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-calendar-alt"></i> <span>Meal-Plan</span></a></li>
+          <li><a href="/sommelier" {% set id ="sommelier" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-wine-glass"></i> <span>Sommelier</span></a></li>
+          <li><a href="/credits" {% set id ="credits" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-wine-glass"></i> <span>Credits</span></a></li>
+          <li><a href="/profile" {% set id ="profile" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         </ul>
       </nav>
     </div>

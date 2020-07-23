@@ -6,12 +6,15 @@ var nunjucks = require('nunjucks');
 var session = require('express-session');
 
 //Middleware Routes
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes/cook-zone');
 var cook_laterRouter = require('./routes/cook-later');
 var exploreRouter = require('./routes/explore');
 var favouritesRouter = require('./routes/favourites');
 var meal_planRouter = require('./routes/meal-plan');
 var profile_Router = require('./routes/profile');
+var loginRouter = require('./routes/login');
+var sommelierRouter = require('./routes/sommelier');
+var creditsRouter = require('./routes/credits');
 
 
 //Initialize Express Application
@@ -33,12 +36,15 @@ app.use(session({name:"sid", sameSite:true, resave: true, saveUninitialized: tru
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Use the route paths below
-app.use('/', indexRouter);
+app.use('/cook-zone', indexRouter);
 app.use('/cook-later', cook_laterRouter);
 app.use('/explore', exploreRouter);
 app.use('/favourites', favouritesRouter);
 app.use('/meal-plan', meal_planRouter);
 app.use('/profile', profile_Router);
+app.use('/login', loginRouter);
+app.use('/sommelier', sommelierRouter);
+app.use('/credits', creditsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -6,7 +6,7 @@ var unirest = require("unirest");
 router.get('/', function(req, res, next) {
   res.render('explore', { title: 'Express' });
 });
-
+/*
 
 var req = unirest("GET", "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer");
 
@@ -21,12 +21,14 @@ req.headers({
 });
 
 
+
+
 req.end(function (res) {
   if (res.error) throw new Error(res.error);
 
   console.log(res.body);
 });
 
-
+*/
 
 module.exports = router;
