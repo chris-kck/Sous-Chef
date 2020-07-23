@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
   var request = unirest("GET", "https://api.spoonacular.com/recipes/random");
 
-  request.query({ "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 5 });
+  request.query({ "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 12 });
 
   request.headers({ "useQueryString": true });
 

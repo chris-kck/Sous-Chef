@@ -17,14 +17,17 @@
           <h1>Featured Recipes Cards Carousel</h1>
 
 
-          {% for i in range (0,5) %}
-          <div class="card col-md-3">
-            <img src="{{ recipes[i].image }}" alt="Recipe Image" style="width:100%">
-            <div class="container">
-              <h4><b>{{ recipes[i].title}}</b></h4>
+          {% for i in range (0,12) %}
+            <div class="col-md-3">
+          <div class="card">
+            <img src="{%  if recipes[i].image %} {{ recipes[i].image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
+            <div class="rcontainer">
+              <p><b>{{ recipes[i].title}}</b></p>
               <p></p>
             </div>
           </div>
+            </div>
+          {% if (i+1)%4==0%} <br> {% endif %}
           {% endfor %}
 
 
@@ -39,16 +42,21 @@
       /* Add shadows to create the "card" effect */
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       transition: 0.3s;
-      width: 20%;
+      display:block;
+      width: 100%;
+      height: 250px;
+      overflow: auto;
     }
-
+    .col-md-3{
+      padding-bottom: 20px;
+    }
     /* On mouse-over, add a deeper shadow */
     .card:hover {
       box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     }
 
     /* Add some padding inside the card container */
-    .container {
+    .rcontainer {
       padding: 2px 16px;
     }
     img {
