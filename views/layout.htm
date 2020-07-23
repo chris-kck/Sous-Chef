@@ -44,19 +44,12 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li><a href="#">How to use the app</a></li>
-              <li><a href="#">Navigating the app</a></li>
-              <li><a href="#">Data Sources</a></li>
-              <li><a href="#">Credits</a></li>
+              <li><a href="/credits">Data Sources</a></li>
+              <li><a href="/credits">Credits</a></li>
             </ul>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-power-switch"></i> <span>Credits & Tech Stack</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-            <ol class="dropdown-menu">
-              <li></li>
-            </ol>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/user.png" class="img-circle" alt="Avatar"> <span>Guest</span> </a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="img/user.png" class="img-circle" alt="Avatar"> <span>{{ username|default('Guest') }}</span> </a>
           </li>
 
         </ul>
@@ -77,8 +70,8 @@
           <li><a href="/favourites" {% set id ="favourites" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-star-of-david"></i> <span>Favourites</span></a></li>
           <li><a href="/meal-plan" {% set id ="meal-plan" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-calendar-alt"></i> <span>Meal-Plan</span></a></li>
           <li><a href="/sommelier" {% set id ="sommelier" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-wine-glass"></i> <span>Sommelier</span></a></li>
-          <li><a href="/credits" {% set id ="credits" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-wine-glass"></i> <span>Credits</span></a></li>
-          <li><a href="/profile" {% set id ="profile" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+          <li><a href="/credits" {% set id ="credits" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-list"></i> <span>Credits</span></a></li>
+          <li><a href="/profile" {% set id ="profile" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-user"></i> <span>My Profile</span></a></li>
         </ul>
       </nav>
     </div>
