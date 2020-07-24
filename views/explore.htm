@@ -97,7 +97,7 @@
 
         <!-- Results pagination -->
 
-        {% if searchRes!=[] %}
+        {% if searchRes|length > 0  %}
 
           {% for i in range (0,20) %}
             <div class="col-md-3">
@@ -111,7 +111,8 @@
             </div>
 
           {% endfor %}
-
+        {% else %}
+          <h3 class="text-center">Sorry, No Results Found</h3>
         {% endif %}
           <!-- Results pagination -->
           <nav class="text-center" aria-label="Page navigation">
