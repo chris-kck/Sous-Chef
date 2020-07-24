@@ -37,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Use the route paths below
 app.use('/cook-zone', indexRouter);
+app.use('/', loginRouter); //set cook-zone as the index too :)
 app.use('/cook-later', cook_laterRouter);
 app.use('/explore', exploreRouter);
 app.use('/favourites', favouritesRouter);
