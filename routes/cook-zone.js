@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/', function(req, res) {
-    res.render('cook-zone', { title: req.session.user , recipes: req.recipes});
+    res.render('cook-zone', { username: req.session.user, recipes: req.recipes});
 });
 
 
