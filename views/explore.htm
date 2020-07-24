@@ -6,59 +6,58 @@
     <div class="col-md-12">
       <div class="panel panel-headline">
         <div class="panel-heading">
-          <h3 class="panel-title">Explore page</h3>
-          <p class="panel-subtitle">Exploration of delicious recipes around the globe</p>
-          <div class="right">
-            <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-          </div>
+          <h3 class="panel-title">Exploration of delicious recipes around the globe</h3>
+          <p class="panel-subtitle">Search for recipes according to your criteria of choice</p>
+
         </div>
         <div class="panel-body">
 
           <div class="container">
-            <form class="form-inline" action="/explore">
+            <form class="form-inline" action="/explore" style="width: 100%">
               <span style="display:inline-block">
-              <label  style="display:block" for="email2" class="mb-2 mr-sm-2">Email:</label>
-              <input type="text" class="form-control mb-2 mr-sm-2" id="email2" placeholder="Enter email" name="email">
+              <label  style="display:block" for="recipw" class="mb-2 mr-sm-2">Recipe:</label>
+              <input type="text" class="form-control mb-2 mr-sm-2" id="recipe" placeholder="Enter recipe name" name="recipe">
               </span>
 
-              <span style="display:inline-block">
-              <label style="display:block" for="pwd2" class="mb-2 mr-sm-2">Password:</label>
-              <input type="text" class="form-control mb-2 mr-sm-2" id="pwd2" placeholder="Enter password" name="pswd">
-              </span>
 
               <span style="display:inline-block">
                 <label style="display:block" for="cuisine" class="mb-2 mr-sm-2">Cuisine:</label>
-                <select id="cuisine" class="form-control">
-                  <option value="cheese">Cheese</option>
-                  <option value="tomatoes">Tomatoes</option>
-                  <option value="mozarella">Mozzarella</option>
-                  <option value="mushrooms">Mushrooms</option>
-                  <option value="pepperoni">Pepperoni</option>
-                  <option value="onions">Onions</option>
+                <select name="cuisine" id="cuisine" class="form-control">
+                  <option value=""> --select a cuisine-- </option>
+                  <option value="american">American</option>
+                  <option value="british">British</option>
+                  <option value="cajun">Cajun</option>
+                  <option value="caribbean">Caribbean</option>
+                  <option value="chinese">Chinese</option>
+                  <option value="french">French</option>
+                  <option value="italian">Italian</option>
+                  <option value="mexican">Mexican</option>
                 </select>
               </span>
 
               <span style="display:inline-block">
-                <label style="display:block" for="cuisine" class="mb-2 mr-sm-2">Diet:</label>
-                <select id="diet" class="form-control">
-                  <option value="cheese">Cheese</option>
-                  <option value="tomatoes">Tomatoes</option>
-                  <option value="mozarella">Mozzarella</option>
-                  <option value="mushrooms">Mushrooms</option>
-                  <option value="pepperoni">Pepperoni</option>
-                  <option value="onions">Onions</option>
+                <label style="display:block" for="diet" class="mb-2 mr-sm-2">Diet:</label>
+                <select name="diet" id="diet" class="form-control">
+                  <option value=""> --select a diet-- </option>
+                  <option value="Lacto Vegeterian">Lacto Vegeterian</option>
+                  <option value="Ovo Vegeterian">Ovo Vegeterian</option>
+                  <option value="Pescetarian">Pescetarian</option>
+                  <option value="Primal">Primal</option>
+                  <option value="Vegan">Vegan</option>
+                  <option value="Ketogenic">Ketogenic</option>
                 </select>
               </span>
 
               <span style="display:inline-block">
                 <label style="display:block" for="allergens" class="mb-2 mr-sm-2">Allergens:</label>
-                <select id="allergens" class="form-control">
-                  <option value="cheese">Cheese</option>
-                  <option value="tomatoes">Tomatoes</option>
-                  <option value="mozarella">Mozzarella</option>
-                  <option value="mushrooms">Mushrooms</option>
-                  <option value="pepperoni">Pepperoni</option>
-                  <option value="onions">Onions</option>
+                <select name="allergens" id="allergens" class="form-control">
+                  <option value=""> --select a allergens-- </option>
+                  <option value="dairy">Dairy</option>
+                  <option value="egg">Egg</option>
+                  <option value="gluten">Gluten</option>
+                  <option value="peanut">Peanut</option>
+                  <option value="shellfish">Shellfish</option>
+                  <option value="wheat">Wheat</option>
                 </select>
               </span>
 
@@ -68,15 +67,17 @@
           </div>
 
         <!--TODO Handle returned search results and render in a nice way, handle pagination?--!>
+
+        <!--
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators -->
+          <!-- Indicators
           <ol class="carousel-indicators">
             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
             <li data-target="#carousel-example-generic" data-slide-to="1"></li>
             <li data-target="#carousel-example-generic" data-slide-to="2"></li>
           </ol>
 
-          <!-- Wrapper for slides -->
+          <!-- Wrapper for slides
           <div class="carousel-inner" role="listbox">
             <div class="item active">
               <img src="img/user.png" alt="...">
@@ -92,11 +93,28 @@
             </div>
             ...
           </div>
+-->
 
+        <!-- Results pagination -->
 
+        {% if searchRes!=[] %}
 
+          {% for i in range (0,20) %}
+            <div class="col-md-3">
+              <div class="card">
+                <img height="" src="{%  if searchRes[i].image %} https://spoonacular.com/recipeImages/{{ searchRes[i].image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
+                <div class="rcontainer">
+                  <p><b>{{ searchRes[i].title}}</b></p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
 
-          <nav aria-label="Page navigation">
+          {% endfor %}
+
+        {% endif %}
+          <!-- Results pagination -->
+          <nav class="text-center" aria-label="Page navigation">
             <ul class="pagination">
               <li>
                 <a href="#" aria-label="Previous">
@@ -114,9 +132,20 @@
             </ul>
           </nav>
 
+
+        {{ super() }}
         </div>
       </div>
     </div>
   </div>
+
+  <style>
+    .card img {
+      height: 150px;
+    }
+    html{
+      overflow-x:hidden
+    }
+  </style>
 
 {% endblock %}
