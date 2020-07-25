@@ -103,7 +103,8 @@
             <div class="col-md-3">
               <div class="card">
                 <img height="" src="{%  if searchRes[i].image %} https://spoonacular.com/recipeImages/{{ searchRes[i].image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
-                <div class="rcontainer">
+                <div class="rcontainer text-center">
+                  <button type="button" class="btn btn-danger" value="{{searchRes[i].id}}" onclick="addFav(this.value)" >Bookmark Recipe  <i class="fa fa-heart"> </i> </button>
                   <p><b>{{ searchRes[i].title}}</b></p>
                   <p></p>
                 </div>
@@ -148,5 +149,21 @@
       overflow-x:hidden
     }
   </style>
+  <script>
+    function addFav(recID) {
+
+      $.post('/favourites', {recID},
+              function(returnedData){
+                //console.log(returnedData);
+                alert(returnedData);
+              });
+
+      //$.ajax({url: "/favourites", success: function(result){
+       //   alert(recID);
+        //}});
+      //document.getElementById("demo").innerHTML = val;
+    }
+  </script>
+  </script>
 
 {% endblock %}

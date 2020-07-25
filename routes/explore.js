@@ -25,7 +25,8 @@ router.post('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   //run api search query with supplied user parameters.
   //https://api.spoonacular.com/recipes/search?cuisine=<string>&diet=<string>&intolerances=<string>&number=<number>
-  console.log(req.body);
+  //console.log(req.body); //what's been searched
+    console.log(req.searchRes);
   res.render('explore', { username: req.session.user , searchRes: req.searchRes});
 });
 /*
