@@ -151,17 +151,10 @@
   </style>
   <script>
     function addFav(recID) {
-
       $.post('/favourites', {recID},
               function(returnedData){
-                //console.log(returnedData);
                 alert(returnedData);
               });
-
-      //$.ajax({url: "/favourites", success: function(result){
-       //   alert(recID);
-        //}});
-      //document.getElementById("demo").innerHTML = val;
     }
   </script>
   </script>
