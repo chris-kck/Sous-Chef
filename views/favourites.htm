@@ -12,8 +12,24 @@
 
       </div>
       <div class="panel-body">
-        <p> 12 testin </p>
+        {% if favRecipes|length > 0  %}
 
+          {% for i in favRecipes %}
+            <div class="col-md-3">
+              <div class="card">
+                <img height="" src="{%  if i.image %} {{ i.image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
+                <div class="rcontainer text-center">
+                  <p><b>{{ i.title}}</b></p>
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+        {% else %}
+          <h3 class="text-center">You have not yet added any favourites.</h3>
+        {% endif %}
+
+        {{ super() }}
       </div>
     </div>
   </div>
