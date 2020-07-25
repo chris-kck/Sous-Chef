@@ -15,13 +15,15 @@
         <div class="panel-body">
 
           <h1>Featured Recipes Cards Carousel</h1>
+          <p> Food joke/triivia</p>
 
 
           {% for i in range (0,12) %}
             <div class="col-md-3">
           <div class="card">
             <img src="{%  if recipes[i].image %} {{ recipes[i].image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
-            <div class="rcontainer">
+            <div class="rcontainer text-center">
+              <button type="button" class="btn btn-danger" value="{{recipes[i].id}}" onclick="addFav(this.value)" >Add to Favourites  <i class="fa fa-heart"> </i> </button>
               <p><b>{{ recipes[i].title}}</b></p>
               <p></p>
             </div>
@@ -36,5 +38,14 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function addFav(recID) {
+      $.post('/favourites', {recID},
+              function(returnedData){
+                alert(returnedData);
+              });
+    }
+  </script>
 
 {% endblock %}

@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   req.session.favourites =  req.session.favourites || []; //itself if it exists else empty list
   req.session.favourites.push( req.body.recID); //push to list of fav recipe objects for session
-  res.send("Your recipe has been successfully bookmarked");
+  res.send("Your recipe has been added to the Favourites Tab");
   console.log(req.session.favourites);
 });
 
