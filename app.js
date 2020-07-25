@@ -7,7 +7,7 @@ var session = require('express-session');
 
 //Middleware Routes
 var indexRouter = require('./routes/cook-zone');
-var cook_laterRouter = require('./routes/cook-later');
+var chatbotRouter = require('./routes/chatbot');
 var exploreRouter = require('./routes/explore');
 var favouritesRouter = require('./routes/favourites');
 var meal_planRouter = require('./routes/meal-plan');
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Use the route paths below
 app.use('/cook-zone', indexRouter);
 app.use('/', loginRouter); //set cook-zone as the index too :)
-app.use('/cook-later', cook_laterRouter);
+app.use('/chatbot', chatbotRouter);
 app.use('/explore', exploreRouter);
 app.use('/favourites', favouritesRouter);
 app.use('/meal-plan', meal_planRouter);
