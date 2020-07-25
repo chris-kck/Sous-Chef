@@ -2,6 +2,36 @@
 
 {% set active_page ="sommelier" %}
 {% block content %}
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3 class="panel-title">Get a wine recommendation for your food</h3>
+        <p class="panel-subtitle">Pick a food and get wine pairing</p>
+
+      </div>
+      <div class="panel-body">
+
+        <div class="text-left">
+          <form class="form-inline" action="/sommelier" style="width: 100%">
+              <span style="display:inline-block">
+              <label  style="display:block" for="recipe" class="mb-2 mr-sm-2">Recipe / Ingredient:</label>
+              <input type="text" class="form-control mb-2 mr-sm-2" id="recipe" placeholder="Enter recipe/ ingredient name" name="recipe">
+              </span>
+            <button type="submit" formmethod="post" class="btn btn-primary mb-2">Get wine pairing</button>
+          </form>
+
+            <div>
+                <h5>Recommended wines for your search: "{{ recipe }}" are: <br> </h5>
+                    <ul>
+                    {% for wine in wineRes %}
+                    <li> {{ wine }}</li>
+                    {% endfor %}
+                     </ul>
+                <h5>Expert advice for pairing:</h5>
+                    <p>{{ wineText }}</p>
+
+            </div>
+        </div>
+      </div>
 {% endblock %}

@@ -24,7 +24,7 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="brand">
-      <a href="/"><img src="img/logo-dark.png" alt="Logo" width="180px" class="img-responsive logo"></a>
+      <a href="/cook-zone"><img src="img/logo-dark.png" alt="Logo" width="180px" class="img-responsive logo"></a>
     </div>
     <div class="container-fluid">
       <div class="navbar-btn">
@@ -64,9 +64,9 @@
           {% set active_page = active_page|default('cook-zone') -%}
           <li><a href="/cook-zone" {% set id ="cook-zone" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-utensils"></i> <span>Cook-Zone</span></a></li>
           <li><a href="/explore" {% set id ="explore" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-binoculars"></i> <span>Explore</span></a></li>
-          <li><a href="/chatbot" {% set id ="cook-later" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-comment-dots"></i> <span>Chatbot</span></a></li>
           <li><a href="/favourites" {% set id ="favourites" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-star-of-david"></i> <span>Favourites</span></a></li>
           <li><a href="/sommelier" {% set id ="sommelier" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-wine-glass"></i> <span>Sommelier</span></a></li>
+          <li><a href="/chatbot" {% set id ="cook-later" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-comment-dots"></i> <span>Foodbot</span></a></li>
           <li><a href="/profile" {% set id ="profile" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-user"></i> <span>My Profile</span></a></li>
           <li><a href="/credits" {% set id ="credits" %}class="{% if id == active_page %} active {% endif%}"><i class="fa fa-list"></i> <span>Credits</span></a></li>
         </ul>
@@ -88,7 +88,7 @@
                 transition: 0.3s;
                 display:block;
                 width: 100%;
-                height: 250px;
+                height: 260px;
                 overflow: auto;
               }
               .col-md-3{
