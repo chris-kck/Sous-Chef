@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
         .end(function (response) {
           if (response.error) throw new Error(response.error);
           console.log(response.body); //results?
-          res.render('sommelier', { recipe:req.body.recipe, wineRes: response.body.pairedWines, wineText: response.body.pairingText });
+          res.render('sommelier', { recipeSearch:req.body.recipe, wineRes: response.body.pairedWines, wineText: response.body.pairingText });
         });
   }
   else if (req.body.wine){
@@ -27,9 +27,12 @@ router.post('/', function(req, res, next) {
         .headers({"useQueryString": true})
         .end(function (response) {
           if (response.error) throw new Error(response.error);
-          req.searchRes = response.body.results; //results?
-          res.render('sommelier', { username: req.session.user });
+            console.log(response.body); //results?
+          res.render('sommelier', { wineSearch:req.body.wine, wineText:response.body.text, winePairings:response.body.pairings  });
         });
+  }
+  else{
+      res.render('sommelier');//Don't send an empty query
   }
 
 });

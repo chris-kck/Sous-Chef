@@ -3,7 +3,7 @@
 {% set active_page ="sommelier" %}
 {% block content %}
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
     <div class="panel panel-headline">
       <div class="panel-heading">
         <h3 class="panel-title">Get a wine recommendation for your food</h3>
@@ -20,18 +20,84 @@
               </span>
             <button type="submit" formmethod="post" class="btn btn-primary mb-2">Get wine pairing</button>
           </form>
+            <hr>
 
             <div>
-                <h5>Recommended wines for your search: "{{ recipe }}" are: <br> </h5>
+                {% if wineRes or wineText  %}
+
+                <h4>Recommended wines for {{ recipeSearch }} are: <br> </h4>
                     <ul>
                     {% for wine in wineRes %}
                     <li> {{ wine }}</li>
                     {% endfor %}
                      </ul>
-                <h5>Expert advice for pairing:</h5>
+                <h4>Expert advice for pairing:</h4>
                     <p>{{ wineText }}</p>
+
+                {% else %}
+                    <h3 class="text-center">Sorry, No Results Found</h3>
+                {% endif %}
 
             </div>
         </div>
       </div>
+
+
+    </div>
+  </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Food recommendation for your wine</h3>
+                    <p class="panel-subtitle">Pick a wine and get food pairing</p>
+
+                </div>
+                <div class="panel-body">
+
+                    <div class="text-left">
+                        <form class="form-inline" action="/sommelier" style="width: 100%">
+                          <span style="display:inline-block">
+                            <label style="display:block" for="wine" class="mb-2 mr-sm-2">Pick a Wine type:</label>
+                            <select name="wine" id="wine" class="form-control">
+                                <option value=""> --select a wine-- </option>
+                                <option value="Merlot">Merlot</option>
+                                <option value="Chardonnay">Chardonnay</option>
+                                <option value="carbenet sauvignon">Carbenet Sauvignon</option>
+                                <option value="Sauvignon Blanc">Sauvignon Blanc</option>
+                                <option value="Pinot Grigio">Pinot Grigio</option>
+                                <option value="pinot noir">Pinot Noir</option>
+                                <option value="Riesling">Riesling</option>
+                                <option value="zinfandel">Zinfandel</option>
+                                <option value="muscat">Muscat</option>
+                            </select>
+                          </span>
+                            <button type="submit" formmethod="post" class="btn btn-primary mb-2">Get wine pairing</button>
+                        </form>
+                        <hr>
+
+                        <div>
+                            {% if wineText  %}
+
+                                <h4>Recommended wines for {{ recipeSearch }} are: <br> </h4>
+                                <ul>
+                                    {% for wine in wineRes %}
+                                        <li> {{ wine }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <h4>Expert advice for pairing:</h4>
+                                <p>{{ wineText }}</p>
+
+                            {% else %}
+                                <h3 class="text-center">Sorry, No Results Found</h3>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 {% endblock %}
