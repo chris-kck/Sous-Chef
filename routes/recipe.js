@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('meal-plan', { username: req.session.user });
+
+  //query particular recipe and render its info
+  res.render('recipe', { username: req.session.user });
 });
 
 module.exports = router;

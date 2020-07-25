@@ -10,7 +10,7 @@ var indexRouter = require('./routes/cook-zone');
 var chatbotRouter = require('./routes/chatbot');
 var exploreRouter = require('./routes/explore');
 var favouritesRouter = require('./routes/favourites');
-var meal_planRouter = require('./routes/meal-plan');
+var recipeRouter = require('./routes/recipe');
 var profile_Router = require('./routes/profile');
 var loginRouter = require('./routes/login');
 var sommelierRouter = require('./routes/sommelier');
@@ -41,7 +41,7 @@ app.use('/', loginRouter); //set cook-zone as the index too :)
 app.use('/chatbot', chatbotRouter);
 app.use('/explore', exploreRouter);
 app.use('/favourites', favouritesRouter);
-app.use('/meal-plan', meal_planRouter);
+app.use('/recipe', recipeRouter);
 app.use('/profile', profile_Router);
 app.use('/login', loginRouter);
 app.use('/sommelier', sommelierRouter);
