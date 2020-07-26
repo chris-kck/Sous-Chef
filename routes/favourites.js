@@ -16,11 +16,11 @@ router.get('/', function(req, res, next) {
           if (response.error) throw new Error(response.error);
           console.log(response.body);
           req.favRecipes = response.body;
-          res.render('favourites', { favRecipes: req.favRecipes });
+          res.render('favourites', { favRecipes: req.favRecipes, username: req.session.user });
 
         });
   }
-  else { res.render('favourites');}
+  else { res.render('favourites', {username: req.session.user});}
 });
 
 
