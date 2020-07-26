@@ -12,20 +12,20 @@
       <div class="panel-body">
 
         <div class="text-left">
-          <form class="form-inline" action="/sommelier" style="width: 100%">
+          <form id="chat" class="form-inline" action="/chatbot" style="width: 100%">
               <div class="input-group">
-              <input type="text"style="width:250%" class="form-control mb-2 mr-sm-2" id="recipe" placeholder="Enter recipe/ ingredient name" name="recipe" autocomplete="off">
+              <input type="text"style="width:250%" class="form-control mb-2 mr-sm-2" name="chatmsg" id="chatmsg" placeholder="Enter recipe/ ingredient name" name="recipe" autocomplete="off">
               </div>
 
               <div class="btn-group">
-            <button type="submit" formmethod="post" class="btn btn-primary mb-2" style="margin-left: 300px">Send Chat</button> <!--prevent default--!>
+            <button id="chatbtn" type="submit" class="btn btn-primary mb-2" style="margin-left: 300px">Send Chat</button> <!--prevent default--!>
             <button type="button" class="btn btn-primary mb-2" style="margin-left: 20px" onclick="$('#description').slideToggle();">What can I say?</button>
               </div>
 
 
           </form>
           <hr>
-            <div id="description" style="display: none">
+            <div id="description" style="display: none; background:black">
                 <ul>
                     <li>Ask for recipes like <k>'chicken recipes'</k> or <k>'spaghetti with shrimp'</k> </li>
                     <li>Ask for nutrient contents like <k>'vitamin a in 2 carrots'</k> or <k>'calories is 1 cup of butter'</k></li>
@@ -39,6 +39,8 @@
                     <li>Want to learn some food trivia, just say <k>'food trivia'.</k></li>
                 </ul>
             </div>
+
+            <div id="foodBotHist" class="col-md-12" style="background: #3ea1ec"></div>
 
           <div>
             {% if wineRes|length >0 %}
@@ -59,9 +61,53 @@
           </div>
         </div>
       </div>
-
+        {{ super }}
 
     </div>
   </div>
 </div>
+    <style>
+        k{ color:green;}
+        #description li{color: whitesmoke;}
+    </style>
+
+    <script>
+        $(document).ready(function() {
+
+            $('#chatbtn').off("click").on("click", function (e) {
+                e.preventDefault();
+                var chatmsg = $('input[name=chatmsg]').val();
+                //console.log(chatmsg);
+
+                $.post('/chatbot', {chatmsg},
+                    function (returnedData) {
+                        $('#foodBotHist').prepend("You:<b>"+ chatmsg + "</b> <hr>");
+
+                        console.log(returnedData.media);
+                        returnedData.media.forEach(function(obj) {
+
+                            //console.log(obj.title);
+
+                            $('#foodBotHist').prepend(""+
+                                "<div class='col-md-3'>"+
+                                "<div class='card'>"+
+                                "<img src='"+obj.image+"' alt='Recipe Image' style='width:100%'>"+
+                                "<div class='rcontainer text-center'>"+
+                                "<p><b>"+obj.title+"</b></p>"+
+                            "</div> </div> </div>");
+
+                        });
+                        $('#foodBotHist').prepend("<br>Foodbot: <b>"+ returnedData.answerText + "</b> <hr>");
+
+                        //console.log(returnedData.answerText);
+
+                    });
+
+            });
+        });
+
+    </script>
+
+
 {% endblock %}
+
