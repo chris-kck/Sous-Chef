@@ -11,7 +11,7 @@
 
         </div>
         <div class="panel-body">
-
+        <p>{{ trivia }}</p>
           <div class="container">
             <form class="form-inline" action="/explore" style="width: 100%">
               <span style="display:inline-block">
@@ -99,13 +99,13 @@
 
         {% if searchRes|length > 0  %}
 
-          {% for i in range (0,20) %}
+          {% for result in searchRes %}
             <div class="col-md-3">
               <div class="card">
-                <img height="" src="{%  if searchRes[i].image %} https://spoonacular.com/recipeImages/{{ searchRes[i].image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
+                <img height="" src="{%  if result.image %} https://spoonacular.com/recipeImages/{{ result.image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
                 <div class="rcontainer text-center">
-                  <button type="button" class="btn btn-danger btn-toastr" value="{{searchRes[i].id}}" onclick="addFav(this.value)" >Add to Favourites<i class="fa fa-heart"> </i> </button>
-                  <p><b>{{ searchRes[i].title}}</b></p>
+                  <button type="button" class="btn btn-danger btn-toastr" value="{{result.id}}" onclick="addFav(this.value)" >Add to Favourites<i class="fa fa-heart"> </i> </button>
+                  <p><b>{{ result.title}}</b></p>
                   <p></p>
                 </div>
               </div>
