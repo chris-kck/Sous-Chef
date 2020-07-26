@@ -5,8 +5,8 @@
   <div class="col-md-12">
     <div class="panel panel-headline">
       <div class="panel-heading">
-        <h3 class="panel-title">Get a wine recommendation for your food</h3>
-        <p class="panel-subtitle">Pick a food and get wine pairing</p>
+        <h3 class="panel-title">Chat with our Foodbot on foodie topics</h3>
+        <p class="panel-subtitle">Click What can I say to see Foodbot capabilities</p>
 
       </div>
       <div class="panel-body">
@@ -40,28 +40,13 @@
                 </ul>
             </div>
 
-            <div id="foodBotHist" class="col-md-12" style="background: #3ea1ec"></div>
+            <div id="foodBotHist" class="col-md-12" ></div>
+            <h3 class="text-center">Type in your search Query</h3>
 
-          <div>
-            {% if wineRes|length >0 %}
 
-              <h4>Recommended wines for {{ recipeSearch }} are: <br> </h4>
-              <ul>
-                {% for wine in wineRes %}
-                  <li> {{ wine }}</li>
-                {% endfor %}
-              </ul>
-              <h4>Expert advice for pairing:</h4>
-              <p>{{ wineText }}</p>
-
-            {% else %}
-              <h3 class="text-center">Sorry, No Results Found</h3>
-            {% endif %}
-
-          </div>
         </div>
       </div>
-        {{ super }}
+        {{ super() }}
 
     </div>
   </div>
@@ -81,11 +66,9 @@
 
                 $.post('/chatbot', {chatmsg},
                     function (returnedData) {
-                        $('#foodBotHist').prepend("You:<b>"+ chatmsg + "</b> <hr>");
 
                         console.log(returnedData.media);
                         returnedData.media.forEach(function(obj) {
-
                             //console.log(obj.title);
 
                             $('#foodBotHist').prepend(""+
@@ -97,8 +80,9 @@
                             "</div> </div> </div>");
 
                         });
-                        $('#foodBotHist').prepend("<br>Foodbot: <b>"+ returnedData.answerText + "</b> <hr>");
-
+                        var time = new Date($.now()).toUTCString();
+                        $('#foodBotHist').prepend("<div  style='margin-bottom:10px; background: #ddffff ; border-left:6px solid; border-color:#2196F3; min-height:30px' class='col-md-12'><h4><b> Foodbot: </b>"+ returnedData.answerText+" </h4>"+time+"</div> ");
+                        $('#foodBotHist').prepend("<div  style='margin-bottom:10px; background: #ddffff ; border-right:6px solid; border-color:#2196F3; min-height:30px' class='col-md-12 text-right'> <h4><b> {{ username|default('You') }}: </b>"+ chatmsg +"</h4>"+time+"</div>");
                         //console.log(returnedData.answerText);
 
                     });
