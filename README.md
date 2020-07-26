@@ -46,3 +46,4 @@ Browse ```http://localhost:8080```
 
 Login with your name or just a pseudonym and see what's cooking!
 
+<img src="https://github.com/chris-kck/Sous-Chef/blob/master/public/img/sous-chef.png" height="60">
