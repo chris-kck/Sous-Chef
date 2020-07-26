@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
         unirest
             .get("https://api.spoonacular.com/food/videos/search")
             .query({
-                "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 20, "cuisine": req.body.cuisine,
+                "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 40, "cuisine": req.body.cuisine,
                 "query": req.body.recipe, "diet": req.body.diet
             })
             .headers({"useQueryString": true})
@@ -45,7 +45,7 @@ router.post('/', function(req, res, next) {
         unirest
             .get("https://api.spoonacular.com/recipes/search")
             .query({
-                "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 20, "cuisine": req.body.cuisine,
+                "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 40, "cuisine": req.body.cuisine,
                 "query": req.body.recipe, "diet": req.body.diet, "intolerances": req.body.allergens
             })
             .headers({"useQueryString": true})
