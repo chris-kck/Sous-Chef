@@ -1,6 +1,67 @@
 {% extends 'layout.htm' %}
 {% set active_page ="cook-later" %}
 {% block content %}
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-headline">
+      <div class="panel-heading">
+        <h3 class="panel-title">Get a wine recommendation for your food</h3>
+        <p class="panel-subtitle">Pick a food and get wine pairing</p>
+
+      </div>
+      <div class="panel-body">
+
+        <div class="text-left">
+          <form class="form-inline" action="/sommelier" style="width: 100%">
+              <div class="input-group">
+              <input type="text"style="width:250%" class="form-control mb-2 mr-sm-2" id="recipe" placeholder="Enter recipe/ ingredient name" name="recipe" autocomplete="off">
+              </div>
+
+              <div class="btn-group">
+            <button type="submit" formmethod="post" class="btn btn-primary mb-2" style="margin-left: 300px">Send Chat</button> <!--prevent default--!>
+            <button type="button" class="btn btn-primary mb-2" style="margin-left: 20px" onclick="$('#description').slideToggle();">What can I say?</button>
+              </div>
+
+
+          </form>
+          <hr>
+            <div id="description" style="display: none">
+                <ul>
+                    <li>Ask for recipes like <k>'chicken recipes'</k> or <k>'spaghetti with shrimp'</k> </li>
+                    <li>Ask for nutrient contents like <k>'vitamin a in 2 carrots'</k> or <k>'calories is 1 cup of butter'</k></li>
+                    <li>Convert something with <k>'2 cups of butter in grams'</k></li>
+                    <li>Check out foodie gifts by saying <k>'show me some foodie gifts'</k></li>
+                    <li>Find food substitutes by saying <k>'what is a substitute for flour'</k></li>
+                    <li>Thirsty? Ask for wine pairings like <k>'which wine goes well with spaghetti carbonara'</k></li>
+                    <li>If you want more results, just say <k>'more'</k></li>
+                    <li>For more similar results say <k>'more like the first/second/third...'</k></li>
+                    <li>Let spoonacular tell you a joke, just say <k>'tell me a joke'.</k></li>
+                    <li>Want to learn some food trivia, just say <k>'food trivia'.</k></li>
+                </ul>
+            </div>
+
+          <div>
+            {% if wineRes|length >0 %}
+
+              <h4>Recommended wines for {{ recipeSearch }} are: <br> </h4>
+              <ul>
+                {% for wine in wineRes %}
+                  <li> {{ wine }}</li>
+                {% endfor %}
+              </ul>
+              <h4>Expert advice for pairing:</h4>
+              <p>{{ wineText }}</p>
+
+            {% else %}
+              <h3 class="text-center">Sorry, No Results Found</h3>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
 {% endblock %}
