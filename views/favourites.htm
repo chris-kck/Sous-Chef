@@ -15,11 +15,17 @@
         {% if favRecipes|length > 0  %}
 
           {% for i in favRecipes %}
-            <div class="col-md-3">
+            <div class="col-md-6">
               <div class="card">
+
+                  <a href="{{ i.spoonacularSourceUrl|default(i.sourceUrl)}}" target="_blank">
                 <img height="" src="{%  if i.image %} {{ i.image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
-                <div class="rcontainer text-center">
+                  </a>
+                    <div class="rcontainer text-center">
+                      <br><i class="fa fa-stopwatch"></i> {{ i.readyInMinutes }} Mins
+                      <i class="fa fa-users"></i> {{ i.servings }} ppl
                   <p><b>{{ i.title}}</b></p>
+                      <p>{{ i.summary|safe }}</p>
                 </div>
               </div>
             </div>
@@ -29,10 +35,37 @@
           <h3 class="text-center">You have not yet added any favourites.</h3>
         {% endif %}
 
-        {{ super() }}
+
       </div>
     </div>
   </div>
 </div>
+  <style>
+    .card {
+      /* Add shadows to create the "card" effect */
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      transition: 0.3s;
+      display:block;
+      width: 100%;
+      height: 650px;
+      overflow: auto;
+    }
+    .col-md-6{
+      padding-bottom: 20px;
+    }
+    /* On mouse-over, add a deeper shadow */
+    .card:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    /* Add some padding inside the card container */
+    .rcontainer {
+      padding: 2px 16px;
+    }
+    .card img {
+      border-radius: 5px 5px 0 0;
+      height: 250px;
+    }
+  </style>
 
 {% endblock %}
