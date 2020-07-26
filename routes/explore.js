@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
 
 //Handle search query & render same page, but with results. Nunjucks is amazing :)
 router.post('/', function(req, res, next) {
-
+    //Check if video checkbox is ticked
     if(req.body.video) {
         unirest
             .get("https://api.spoonacular.com/food/videos/search")

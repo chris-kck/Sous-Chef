@@ -8,7 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body.recipe);
+  //console.log(req.body.recipe);
+    //Check if wine or food query, make relevant API call
   if (req.body.recipe) {
     unirest
         .get("https://api.spoonacular.com/food/wine/pairing")
@@ -32,7 +33,7 @@ router.post('/', function(req, res, next) {
         });
   }
   else{
-      res.render('sommelier');//Don't send an empty query
+      res.render('sommelier');//Render page without responses - ie no search value entered.
   }
 
 });

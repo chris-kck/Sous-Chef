@@ -1,3 +1,4 @@
+//Imports
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -28,7 +29,7 @@ nunjucks.configure('views', {
   autoescape: true
   });
 
-
+//Set app parameters to be used
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

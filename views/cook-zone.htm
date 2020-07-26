@@ -16,7 +16,7 @@
           <h4>Start with some good vibes: {{ joke }}</h4><hr>
 
 
-
+          <!--Loop through recipe results and render on page -->
           {% for recipe in recipes %}
             <div class="col-md-3">
           <div class="card">
@@ -46,6 +46,7 @@
   </div>
 
   <script>
+    //Function to add to favourites
     function addFav(recID) {
       $.post('/favourites', {recID},
               function(returnedData){

@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('login', { title: 'Express' });
 });
 
+//Api Calls and response handling after login to render cook-zone view with info
 router.post('/', function(req, res, next) {
   unirest
       .get("https://api.spoonacular.com/recipes/random")

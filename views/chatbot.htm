@@ -63,7 +63,7 @@
                 e.preventDefault();
                 var chatmsg = $('input[name=chatmsg]').val();
                 //console.log(chatmsg);
-
+                //Function to post search query, asynchronously get response back and prepend it to a html div.
                 $.post('/chatbot', {chatmsg},
                     function (returnedData) {
 

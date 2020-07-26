@@ -3,10 +3,7 @@ var router = express.Router();
 var unirest = require('unirest');
 
 
-
-
-
-
+//Api Calls and response handling
 router.get('/', function(req, res, next) {
     unirest
         .get("https://api.spoonacular.com/recipes/random")
