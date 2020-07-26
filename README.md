@@ -24,6 +24,8 @@ This is a webapp that connects to the Spoonacular API to give curarted recipes, 
 
 ### This is the directory structure of the project:
 
+Github Repository: <a href="https://github.com/chris-kck/Sous-Chef">Click here</a>
+
 root/ ``` project root directory```<br>
 ├─ bin/ ``` web server launch & project startup```<br> 
 ├─ public/ ```public assets ```<br>
@@ -31,10 +33,12 @@ root/ ``` project root directory```<br>
 ├─ views/  ```markup & templates for rendered pages``` <br>
 ├─ node-modules/ ```all node modules and their pre-req```<br>
 
++ Download and unzip repository
 + Install dependencies
 + Run the application bin/www
 
 ```sh
+$git clone https://github.com/chris-kck/Sous-Chef.git
 $ npm install
 $ npm run start
 ```
