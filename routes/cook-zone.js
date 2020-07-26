@@ -10,7 +10,7 @@ var unirest = require('unirest');
 router.get('/', function(req, res, next) {
     unirest
         .get("https://api.spoonacular.com/recipes/random")
-        .query({"apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 20})
+        .query({"apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 32})
         .headers({"useQueryString": true})
         .end(function (response) {
             if (response.error) throw new Error(response.error);
