@@ -6,22 +6,24 @@
     <div class="col-md-12">
       <div class="panel panel-headline">
         <div class="panel-heading">
-          <h3 class="panel-title">Welcome to the Cooking Zone</h3>
-          <p class="panel-subtitle">Cooking Zone</p>
+          <h3 class="panel-title">Sous-Chef's featured Cooking Zone recipes</h3>
+          <p class="panel-subtitle">Click to view detailed recipe</p>
           <div class="right">
             <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
           </div>
         </div>
         <div class="panel-body">
-
-          <h1>Featured Recipes Cards Carousel</h1>
-          <p>{{ joke }}</p>
+          <h4>Start with some good vibes: {{ joke }}</h4> <hr>
 
 
           {% for recipe in recipes %}
             <div class="col-md-3">
           <div class="card">
+
+            <a href="{{ recipe.spoonacularSourceUrl}}" target="_blank">
             <img src="{%  if recipe.image %} {{ recipe.image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
+            </a>
+
             <div class="rcontainer text-center">
               <button type="button" class="btn btn-danger" value="{{recipe.id}}" onclick="addFav(this.value)" >Add to Favourites  <i class="fa fa-heart"> </i> </button>
               <br><i class="fa fa-stopwatch"></i> {{ recipe.readyInMinutes }}
