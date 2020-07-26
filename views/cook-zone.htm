@@ -18,13 +18,16 @@
           <p>{{ joke }}</p>
 
 
-          {% for i in range (0,12) %}
+          {% for recipe in recipes %}
             <div class="col-md-3">
           <div class="card">
-            <img src="{%  if recipes[i].image %} {{ recipes[i].image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
+            <img src="{%  if recipe.image %} {{ recipe.image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
             <div class="rcontainer text-center">
-              <button type="button" class="btn btn-danger" value="{{recipes[i].id}}" onclick="addFav(this.value)" >Add to Favourites  <i class="fa fa-heart"> </i> </button>
-              <p><b>{{ recipes[i].title}}</b></p>
+              <button type="button" class="btn btn-danger" value="{{recipe.id}}" onclick="addFav(this.value)" >Add to Favourites  <i class="fa fa-heart"> </i> </button>
+              <br><i class="fa fa-stopwatch"></i> {{ recipe.readyInMinutes }}
+              <i class="fa fa-users"></i> {{ recipe.servings }}
+
+              <p><b>{{ recipe.title}}</b></p>
               <p></p>
             </div>
           </div>
