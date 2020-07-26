@@ -63,7 +63,7 @@
                                 <option value=""> --select a wine-- </option>
                                 <option value="Merlot">Merlot</option>
                                 <option value="Chardonnay">Chardonnay</option>
-                                <option value="carbenet sauvignon">Carbenet Sauvignon</option>
+                                <option value="cabernet sauvignon">Cabernet Sauvignon</option>
                                 <option value="Sauvignon Blanc">Sauvignon Blanc</option>
                                 <option value="Pinot Grigio">Pinot Grigio</option>
                                 <option value="pinot noir">Pinot Noir</option>
@@ -77,16 +77,17 @@
                         <hr>
 
                         <div>
-                            {% if wineText  %}
+                            {% if rwineText  %}
 
-                                <h4>Recommended wines for {{ recipeSearch }} are: <br> </h4>
+                                <h4>Wine pairing advice:</h4>
+                                <p>{{ rwineText }}</p>
+
+                                <h4>Recommended foods for {{ wineSearch }} are: <br> </h4>
                                 <ul>
-                                    {% for wine in wineRes %}
-                                        <li> {{ wine }}</li>
+                                    {% for food in winePairings %}
+                                        <li> {{ food }}</li>
                                     {% endfor %}
                                 </ul>
-                                <h4>Expert advice for pairing:</h4>
-                                <p>{{ wineText }}</p>
 
                             {% else %}
                                 <h3 class="text-center">Sorry, No Results Found</h3>
