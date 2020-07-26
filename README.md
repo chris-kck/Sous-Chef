@@ -1,6 +1,5 @@
 <div align="center">
     <img src="https://github.com/chris-kck/Sous-Chef/blob/master/public/img/logo-dark.png" height="60">
-    <h2>Sous-Chef</h2>
     <p align="center">
         <p>My Second Nodejs App - Your side chef that assists you eat and cook food you love.</p>
     </p>
@@ -12,7 +11,7 @@ This is my second application using Nodejs. Improving my skills each time.
 
 This is a webapp that connects to the Spoonacular API to give curarted recipes, nutritional information, etc.
 
-##Key Features:
+## Key Features:
 + Daily Features Recipes
 + Recipe exlloration with dietary, ingredient, cuisine and allergen filters.
 + Curated youtube videos with same filters.
@@ -20,7 +19,7 @@ This is a webapp that connects to the Spoonacular API to give curarted recipes, 
 + Image hyperlinks to full recipe instructions, nutritional information, health, cooking, green tips and cost/serving.
 + Sommelier - your personal wine connoisseur who tells you which wine goes with which food & vice-versa.
 + Foodbot - chat in natural language and get recipes, tips, nutritional information.
-- Profile to save your calorie needs, allergens, diet info and meal-plans.
++ Profile to save your calorie needs, allergens, diet info and meal-plans.
 
 
 ### This is the directory structure of the project:
