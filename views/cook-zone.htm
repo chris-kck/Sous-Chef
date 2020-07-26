@@ -13,7 +13,8 @@
           </div>
         </div>
         <div class="panel-body">
-          <h4>Start with some good vibes: {{ joke }}</h4> <hr>
+          <h4>Start with some good vibes: {{ joke }}</h4><hr>
+
 
 
           {% for recipe in recipes %}
@@ -37,7 +38,7 @@
           {% if (i+1)%4==0 %} <br> {% endif %}
           {% endfor %}
 
-
+          <hr><div style="text-align: center;"><button type="button" class="btn btn-success" onclick="location.reload(true);" >More recipes  <i class="fa fa-heart"> </i> </button></div>
           {{ super() }}
         </div>
       </div>
