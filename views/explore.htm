@@ -60,6 +60,10 @@
                   <option value="wheat">Wheat</option>
                 </select>
               </span>
+              <label class="fancy-checkbox" style="display:inline-block">
+                <input type="checkbox" name="video" >
+                <span>Search Videos</span>
+              </label>
 
               <button type="submit" formmethod="post" class="btn btn-primary mb-2">Explore</button>
             </form>
@@ -68,33 +72,6 @@
 
         <!--TODO Handle returned search results and render in a nice way, handle pagination?--!>
 
-        <!--
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-          <!-- Indicators
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-          </ol>
-
-          <!-- Wrapper for slides
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <img src="img/user.png" alt="...">
-              <div class="carousel-caption">
-                User haha
-              </div>
-            </div>
-            <div class="item">
-              <img src="img/veg.jpg" alt="...">
-              <div class="carousel-caption">
-                Veg Hahaha
-              </div>
-            </div>
-            ...
-          </div>
--->
-
         <!-- Results pagination -->
 
         {% if searchRes|length > 0  %}
@@ -102,9 +79,13 @@
           {% for result in searchRes %}
             <div class="col-md-3">
               <div class="card">
+                <a href="{{ result.sourceUrl}}" target="_blank">
                 <img height="" src="{%  if result.image %} https://spoonacular.com/recipeImages/{{ result.image}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Image" style="width:100%">
+                </a>
                 <div class="rcontainer text-center">
                   <button type="button" class="btn btn-danger btn-toastr" value="{{result.id}}" onclick="addFav(this.value)" >Add to Favourites<i class="fa fa-heart"> </i> </button>
+                  <br><i class="fa fa-stopwatch"></i> {{ result.readyInMinutes }}
+                  <i class="fa fa-users"></i> {{ result.servings }}
                   <p><b>{{ result.title}}</b></p>
                   <p></p>
                 </div>
@@ -112,7 +93,25 @@
             </div>
 
           {% endfor %}
-        {% else %}
+        {% elif vidsearchRes|length > 0%}
+
+          {% for video in vidsearchRes %}
+            <div class="col-md-3">
+              <div class="card">
+                <a href="https://youtube.com/watch?v={{ video.youTubeId}}" target="_blank">
+                  <img height="" src="{%  if video.thumbnail %} {{ video.thumbnail}} {% else %} /img/food.jpg {% endif %}" alt="Recipe Video" style="width:100%">
+                </a>
+                <div class="rcontainer text-center">
+                  <br><i class="fab fa-youtube"></i> {{ (video.length*0.016)|round(1) }} Minutes
+                  <p><b>{{ video.shortTitle}}</b></p>
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+
+
+          {% else %}
           <h3 class="text-center">Sorry, No Results Found</h3>
         {% endif %}
           <!-- Results pagination -->
