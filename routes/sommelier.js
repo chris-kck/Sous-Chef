@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var unirest = require('unirest');
-var SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY || '20faf6bbe4074762be9f0c0db3fe9709';
+var spoonacular = require('../lib/spoonacular');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,25 +11,17 @@ router.post('/', function(req, res, next) {
   //console.log(req.body.recipe);
     //Check if wine or food query, make relevant API call
   if (req.body.recipe) {
-    unirest
-        .get("https://api.spoonacular.com/food/wine/pairing")
-        .query({"apiKey": SPOONACULAR_API_KEY, "food": req.body.recipe})
-        .headers({"useQueryString": true})
-        .end(function (response) {
-          if (response.error) return next(response.error);
-          console.log(response.body); //results?
-          res.render('sommelier', { recipeSearch:req.body.recipe, wineRes: response.body.pairedWines, wineText: response.body.pairingText });
+    spoonacular("food/wine/pairing", {"food": req.body.recipe}, function (err, body) {
+          if (err) return next(err);
+          console.log(body); //results?
+          res.render('sommelier', { recipeSearch:req.body.recipe, wineRes: body.pairedWines, wineText: body.pairingText });
         });
   }
   else if (req.body.wine){
-    unirest
-        .get("https://api.spoonacular.com/food/wine/dishes")
-        .query({"apiKey": SPOONACULAR_API_KEY, "wine": req.body.wine})
-        .headers({"useQueryString": true})
-        .end(function (response) {
-          if (response.error) return next(response.error);
-            console.log(response.body); //results?
-          res.render('sommelier', { wineSearch:req.body.wine, rwineText:response.body.text, winePairings:response.body.pairings  });
+    spoonacular("food/wine/dishes", {"wine": req.body.wine}, function (err, body) {
+          if (err) return next(err);
+            console.log(body); //results?
+          res.render('sommelier', { wineSearch:req.body.wine, rwineText:body.text, winePairings:body.pairings  });
         });
   }
   else{
