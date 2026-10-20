@@ -1,18 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var unirest = require("unirest");
-var SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY || '20faf6bbe4074762be9f0c0db3fe9709';
+var spoonacular = require('../lib/spoonacular');
 
 
 //Call Trivia despite http vert (post/get)
 router.all('/', function(req, res, next) {
-    unirest
-        .get("https://api.spoonacular.com/food/trivia/random")
-        .query({"apiKey": SPOONACULAR_API_KEY})
-        .headers({"useQueryString": true})
-        .end(function (response) {
-            if (response.error) return next(response.error);
-            req.trivia = response.body.text;
+    spoonacular("food/trivia/random", {}, function (err, body) {
+          if (err) return next(err);
+            req.trivia = body.text;
             console.log(req.trivia);
             next();
         });
@@ -28,31 +23,19 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
     //Check if video checkbox is ticked
     if(req.body.video) {
-        unirest
-            .get("https://api.spoonacular.com/food/videos/search")
-            .query({
-                "apiKey": SPOONACULAR_API_KEY, "number": 40, "cuisine": req.body.cuisine,
-                "query": req.body.recipe, "diet": req.body.diet
-            })
-            .headers({"useQueryString": true})
-            .end(function (response) {
-                if (response.error) return next(response.error);
-                req.vidsearchRes = response.body.videos;
+        spoonacular("food/videos/search", {"number": 40, "cuisine": req.body.cuisine,
+                "query": req.body.recipe, "diet": req.body.diet}, function (err, body) {
+          if (err) return next(err);
+                req.vidsearchRes = body.videos;
                 next();
             });
 
     }
     else{
-        unirest
-            .get("https://api.spoonacular.com/recipes/search")
-            .query({
-                "apiKey": SPOONACULAR_API_KEY, "number": 40, "cuisine": req.body.cuisine,
-                "query": req.body.recipe, "diet": req.body.diet, "intolerances": req.body.allergens
-            })
-            .headers({"useQueryString": true})
-            .end(function (response) {
-                if (response.error) return next(response.error);
-                req.searchRes = response.body.results;
+        spoonacular("recipes/search", {"number": 40, "cuisine": req.body.cuisine,
+                "query": req.body.recipe, "diet": req.body.diet, "intolerances": req.body.allergens}, function (err, body) {
+          if (err) return next(err);
+                req.searchRes = body.results;
                 next();
             });
     }
