@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var unirest = require('unirest');
+var SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY || '20faf6bbe4074762be9f0c0db3fe9709';
 
 /* GET chatbot route. */
 router.get('/', function(req, res, next) {
@@ -12,7 +13,7 @@ router.post('/', function(req, res, next) {
     //api call for conversation
   unirest
       .get("https://api.spoonacular.com/food/converse")
-      .query({"apiKey": process.env.SPOONACULAR_API_KEY, context:req.session.user, "text": req.body.chatmsg})
+      .query({"apiKey": SPOONACULAR_API_KEY, context:req.session.user, "text": req.body.chatmsg})
       .headers({"useQueryString": true})
       .end(function (response) {
         if (response.error) return next(response.error);

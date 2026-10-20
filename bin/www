@@ -4,14 +4,6 @@
  * Module dependencies.
  */
 
-if (!process.env.SPOONACULAR_API_KEY) {
-  console.error('SPOONACULAR_API_KEY is not set. Get a key at https://spoonacular.com/food-api/console');
-  process.exit(1);
-}
-if (!process.env.SESSION_SECRET) {
-  console.warn('SESSION_SECRET is not set. Using a random secret, so sessions reset on every restart.');
-}
-
 var app = require('../app');
 var debug = require('debug')('sous-chef:server');
 var http = require('http');
