@@ -38,9 +38,24 @@ root/ ``` project root directory```<br>
 + Run the application bin/www
 
 ```sh
-$git clone https://github.com/chris-kck/Sous-Chef.git
+$ git clone https://github.com/chris-kck/Sous-Chef.git
 $ npm install
 $ npm run start
+```
+
+### Environment variables
+
+| Name | Required | Purpose |
+|------|----------|---------|
+| `SPOONACULAR_API_KEY` | No | Key for the [Spoonacular API](https://spoonacular.com/food-api/console). Defaults to the built-in key. |
+| `SESSION_SECRET` | No | Signs the session cookie. Defaults to a built-in value. |
+| `PORT` | No | HTTP port. Defaults to `8080`. |
+
+### Docker
+
+```sh
+$ docker build -t sous-chef .
+$ docker run -p 8080:8080 sous-chef
 ```
 Browse ```http://localhost:8080```
 
