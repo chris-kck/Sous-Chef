@@ -38,9 +38,24 @@ root/ ``` project root directory```<br>
 + Run the application bin/www
 
 ```sh
-$git clone https://github.com/chris-kck/Sous-Chef.git
+$ git clone https://github.com/chris-kck/Sous-Chef.git
 $ npm install
-$ npm run start
+$ SPOONACULAR_API_KEY=your-key SESSION_SECRET=$(openssl rand -hex 32) npm run start
+```
+
+### Environment variables
+
+| Name | Required | Purpose |
+|------|----------|---------|
+| `SPOONACULAR_API_KEY` | Yes | Key for the [Spoonacular API](https://spoonacular.com/food-api/console). The app does not start without it. |
+| `SESSION_SECRET` | Recommended | Signs the session cookie. If not set, a random secret is used and sessions reset on restart. |
+| `PORT` | No | HTTP port. Defaults to `8080`. |
+
+### Docker
+
+```sh
+$ docker build -t sous-chef .
+$ docker run -p 8080:8080 -e SPOONACULAR_API_KEY=your-key -e SESSION_SECRET=change-me sous-chef
 ```
 Browse ```http://localhost:8080```
 
