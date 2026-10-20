@@ -7,10 +7,10 @@ var unirest = require("unirest");
 router.all('/', function(req, res, next) {
     unirest
         .get("https://api.spoonacular.com/food/trivia/random")
-        .query({"apiKey": "20faf6bbe4074762be9f0c0db3fe9709"})
+        .query({"apiKey": process.env.SPOONACULAR_API_KEY})
         .headers({"useQueryString": true})
         .end(function (response) {
-            if (response.error) throw new Error(response.error);
+            if (response.error) return next(response.error);
             req.trivia = response.body.text;
             console.log(req.trivia);
             next();
@@ -30,12 +30,12 @@ router.post('/', function(req, res, next) {
         unirest
             .get("https://api.spoonacular.com/food/videos/search")
             .query({
-                "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 40, "cuisine": req.body.cuisine,
+                "apiKey": process.env.SPOONACULAR_API_KEY, "number": 40, "cuisine": req.body.cuisine,
                 "query": req.body.recipe, "diet": req.body.diet
             })
             .headers({"useQueryString": true})
             .end(function (response) {
-                if (response.error) throw new Error(response.error);
+                if (response.error) return next(response.error);
                 req.vidsearchRes = response.body.videos;
                 next();
             });
@@ -45,12 +45,12 @@ router.post('/', function(req, res, next) {
         unirest
             .get("https://api.spoonacular.com/recipes/search")
             .query({
-                "apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "number": 40, "cuisine": req.body.cuisine,
+                "apiKey": process.env.SPOONACULAR_API_KEY, "number": 40, "cuisine": req.body.cuisine,
                 "query": req.body.recipe, "diet": req.body.diet, "intolerances": req.body.allergens
             })
             .headers({"useQueryString": true})
             .end(function (response) {
-                if (response.error) throw new Error(response.error);
+                if (response.error) return next(response.error);
                 req.searchRes = response.body.results;
                 next();
             });

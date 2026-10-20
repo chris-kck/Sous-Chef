@@ -13,10 +13,10 @@ router.post('/', function(req, res, next) {
   if (req.body.recipe) {
     unirest
         .get("https://api.spoonacular.com/food/wine/pairing")
-        .query({"apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "food": req.body.recipe})
+        .query({"apiKey": process.env.SPOONACULAR_API_KEY, "food": req.body.recipe})
         .headers({"useQueryString": true})
         .end(function (response) {
-          if (response.error) throw new Error(response.error);
+          if (response.error) return next(response.error);
           console.log(response.body); //results?
           res.render('sommelier', { recipeSearch:req.body.recipe, wineRes: response.body.pairedWines, wineText: response.body.pairingText });
         });
@@ -24,10 +24,10 @@ router.post('/', function(req, res, next) {
   else if (req.body.wine){
     unirest
         .get("https://api.spoonacular.com/food/wine/dishes")
-        .query({"apiKey": "20faf6bbe4074762be9f0c0db3fe9709", "wine": req.body.wine})
+        .query({"apiKey": process.env.SPOONACULAR_API_KEY, "wine": req.body.wine})
         .headers({"useQueryString": true})
         .end(function (response) {
-          if (response.error) throw new Error(response.error);
+          if (response.error) return next(response.error);
             console.log(response.body); //results?
           res.render('sommelier', { wineSearch:req.body.wine, rwineText:response.body.text, winePairings:response.body.pairings  });
         });

@@ -2,3 +2,5 @@
 *.iml
 !/.gitignore
 /node_modules/
+!/.dockerignore
+!/.env.example
